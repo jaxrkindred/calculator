@@ -64,7 +64,17 @@ buttons.forEach(button => {
                 display.textContent += value;
             }
         } else if (value === "=") {
-            // We'll handle this next!
+            if (operator === "/" && b === "0") {
+                display.textContent = "Clear and try again silly! You can't do that!"
+            } else {
+                let result = operate(operator, Number(a), Number(b));
+                let rounded = parseFloat(result.toFixed(2));
+                display.textContent = rounded;
+                a = display.textContent;
+                b = "";
+                operator = "";
+            }
+
         } else {
             // If operator is not set, build a; else, build b
             if (operator === "") {
